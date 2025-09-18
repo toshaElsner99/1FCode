@@ -41,8 +41,9 @@ android {
     flavorDimensions += "app"
 
     productFlavors {
-        create("stage") {
+        create("dev") {
             dimension = "app"
+            applicationIdSuffix = ".dev"
             resValue("string", "app_name", "1FCode Dev")
         }
         create("prod") {
