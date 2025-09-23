@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:oneFCode/screens/bottom_navigation_bar_screen.dart';
+import 'package:oneFCode/screens/quiz_screen.dart';
+import 'package:oneFCode/utils/app_routes.dart';
+import 'package:oneFCode/utils/navigation_service.dart';
+import 'package:oneFCode/utils/app_colors.dart';
 import 'flavor_config/environment.dart';
 
 void main() {
@@ -14,46 +19,20 @@ class MyApp extends StatelessWidget {
       title: Constants.appName,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Constants.isProduction ? Colors.deepPurple : Colors.orange,
+          seedColor: AppColor.primary,
         ),
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(Constants.appName),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Welcome to ${Constants.appName}'),
-            const SizedBox(height: 20),
-            Text(
-              'Environment: ${Constants.environmentName}',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Constants.isProduction ? Colors.green : Colors.orange,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'API Base URL: ${Constants.baseUrl}',
-              style: Theme.of(context).textTheme.bodySmall,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
+      navigatorKey: NavigationService.navigatorKey,
+      onGenerateRoute: (setting) {
+        final routes = RouteGenerator.routes(setting);
+        final WidgetBuilder builder = routes[setting.name]!;
+        return CustomTransition(
+          builder: builder,
+          settings: setting,
+        );
+      },
+      debugShowCheckedModeBanner: false,
+      home: QuizScreen(),
     );
   }
 }

@@ -37,6 +37,11 @@ dependencies:
   get_it: ^8.2.0
   http: ^1.5.0
   shared_preferences: ^2.5.3
+  keyboard_actions: ^4.2.0
+  pinput: ^5.0.2
+  camera: ^0.10.6
+  image_picker: ^1.2.0
+  video_player: ^2.10.0
 
 dev_dependencies:
   flutter_test:
@@ -61,9 +66,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    - assets/gif/
+    - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -76,6 +82,28 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/outfit/Outfit-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/outfit/Outfit-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/outfit/Outfit-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/outfit/Outfit-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/outfit/Outfit-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/outfit/Outfit-Black.ttf
+          weight:  900
+        - asset: assets/fonts/outfit/Outfit-Light.ttf
+          weight: 300
+        - asset: assets/fonts/outfit/Outfit-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/outfit/Outfit-Thin.ttf
+          weight: 100
+
   # fonts:
   #   - family: Schyler
   #     fonts:
