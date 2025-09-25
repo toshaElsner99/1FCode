@@ -278,4 +278,25 @@ class AppCommonString {
   static const String advancedDesc = "Experienced investor, confident";
   static const String expert = "Expert";
   static const String expertDesc = "Professional level knowledge";
+
+  // Bank Details Screen
+  static const String addBankDetails = "Add Bank Details";
+  static const String enterYourBankDetails = "Enter Your Bank Details";
+  static const String accountHolderName = "Account Holder Name";
+  static const String bankName = "Bank Name";
+  static const String branchName = "Branch Name";
+  static const String accountType = "Account Type";
+  static const String ifscCode = "IFSC Code";
+  static const String balance = "Balance";
+  static const String uploadStatement = "Upload Statement";
+  static const String uploadBankStatement = "Upload Bank Statement";
+  static const String maxFileSize = "Max. file size: 10 MB (Pdf, Jpeg, Png)";
+  static const String notes = "Notes";
+  static const String saveBankDetails = "Save Bank Details";
+  
+  // Account Types
+  static const String savings = "Savings";
+  static const String current = "Current";
+  static const String fixedDeposit = "Fixed Deposit";
+  static const String recurringDeposit = "Recurring Deposit";
 }

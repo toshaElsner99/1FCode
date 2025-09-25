@@ -1,4 +1,6 @@
 class AppImage {
+  static const imagesPath = "assets/images/";
+
   static const splashImage = "assets/images/splash_image.png";
   static const splash1FCLogo = "assets/images/splash_1FC_logo.png";
   static const splashTextLogo = "assets/images/splash_text_logo.png";
@@ -25,6 +27,13 @@ class AppImage {
   static const riskProfileIcon = "assets/images/risk_profile.png";
   static const dummyProfileIcon = "assets/images/dummy_profile.png";
   static const upmoveRedirectIcon = "assets/images/upmove_redirect.png";
+  static const uploadDocIcon = "assets/images/upload_doc.png";
+
+  // Bottom Navigation Icons
+  static const homeIcon = "assets/images/home.png";
+  static const marketIcon = "assets/images/market.png";
+  static const notificationIcon = "assets/images/notification.png";
+  static const settingIcon = "assets/images/settings.png";
 
   // GIFs
   static const doneGIF = "assets/gif/done.gif";

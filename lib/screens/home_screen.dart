@@ -13,9 +13,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final TextEditingController _netWorthController = TextEditingController(text: "Your Net worth");
+  final TextEditingController _netWorthController =
+      TextEditingController(text: "Your Net worth");
   final FocusNode _netWorthFocusNode = FocusNode();
-  
+
   // Draggable tiles data
   List<Map<String, dynamic>> tiles = [
     {
@@ -75,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             // Custom AppBar with Profile Header
             _buildCustomAppBar(context),
+            const SizedBox(height: 20),
             // Draggable Tiles Section
             _buildDraggableTilesSection(),
             // Trading Card Section
@@ -82,12 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Other Section
             _buildOtherSection(),
             // Rest of the content
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Additional content can be added here
-              ],
-            ),
+            const SizedBox(height: 150),
           ],
         ),
       ),
@@ -104,99 +101,100 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomRight: Radius.circular(24),
         ),
       ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Profile Header Row
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Name and Age Tag Row
-                        Row(
-                          children: [
-                            Text(
-                              AppCommonString.jessicaLee,
-                              style: AppTextStyles.semiBold.copyWith(
-                                fontSize: 18,
-                                color: AppColor.blackColor,
-                              ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 50),
+            // Profile Header Row
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Name and Age Tag Row
+                      Row(
+                        children: [
+                          Text(
+                            AppCommonString.jessicaLee,
+                            style: AppTextStyles.semiBold.copyWith(
+                              fontSize: 18,
+                              color: AppColor.blackColor,
                             ),
-                            const SizedBox(width: 12),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
+                          ),
+                          const SizedBox(width: 12),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
                                 color: AppColor.primary,
                                 borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: AppColor.whiteColor)
-                              ),
-                              child: Text(
-                                "24 Age",
-                                style: AppTextStyles.medium.copyWith(
-                                  fontSize: 11,
-                                  color: AppColor.whiteColor,
-                                ),
+                                border: Border.all(color: AppColor.whiteColor)),
+                            child: Text(
+                              "24 ${AppCommonString.age}",
+                              style: AppTextStyles.medium.copyWith(
+                                fontSize: 11,
+                                color: AppColor.whiteColor,
                               ),
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        // Risk Profile Row
-                        Row(
-                          children: [
-                            Text(
-                              AppCommonString.riskProfile,
-                              style: AppTextStyles.regular.copyWith(
-                                fontSize: 14,
-                                color: AppColor.blackColor,
-                              ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                      // Risk Profile Row
+                      Row(
+                        children: [
+                          Text(
+                            AppCommonString.riskProfile,
+                            style: AppTextStyles.regular.copyWith(
+                              fontSize: 14,
+                              color: AppColor.blackColor,
                             ),
-                            const SizedBox(width: 12),
-                            // Risk Profile Gauge Icon
-                            Image.asset(
-                              AppImage.riskProfileIcon,
-                              width: 30,height: 30
-                            ),
-                          ],
-                        ),
-                      ],
+                          ),
+                          const SizedBox(width: 12),
+                          // Risk Profile Gauge Icon
+                          Image.asset(AppImage.riskProfileIcon,
+                              width: 25, height: 25),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                // Profile Picture
+                CircleAvatar(
+                  radius: 35,
+                  backgroundColor: AppColor.whiteColor,
+                  child: ClipOval(
+                    child: Image.network(
+                      "https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/field_blog_entry_images/2018-09/shutterstock_648907024.jpg?itok=7lrLYx-B",
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  // Profile Picture
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundColor: AppColor.whiteColor,
-                    child: ClipOval(
-                      child: Image.network(
-                        "https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/field_blog_entry_images/2018-09/shutterstock_648907024.jpg?itok=7lrLYx-B",
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
-              // Net Worth TextField
-              AppTextField(
+                )
+              ],
+            ),
+            const SizedBox(height: 20),
+            // Net Worth TextField
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: AppTextField(
                 label: AppCommonString.yourNetWorth,
                 isFilledColor: true,
                 controller: _netWorthController,
                 focusNode: _netWorthFocusNode,
                 isNotEnabled: false,
-                style: AppTextStyles.regular.copyWith(fontSize: 14, color: AppColor.blackColor),
+                style: AppTextStyles.regular
+                    .copyWith(fontSize: 14, color: AppColor.blackColor),
                 suffixText: AppCommonString.netWorthValue,
                 showLabel: false,
-                contentPaddingOverride: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                contentPaddingOverride:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide(color: AppColor.whiteColor),
@@ -210,9 +208,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderSide: BorderSide(color: AppColor.whiteColor),
                 ),
               ),
-              const SizedBox(height: 20),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
@@ -226,10 +224,11 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisCount: 2,
           mainAxisSpacing: 12,
           crossAxisSpacing: 12,
-          childAspectRatio: 1.7,
+          childAspectRatio: 2.0,
         ),
+        padding: EdgeInsets.zero,
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         itemCount: tiles.length,
         itemBuilder: (context, index) {
           return LongPressDraggable<Map<String, dynamic>>(
@@ -250,12 +249,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             child: DragTarget<Map<String, dynamic>>(
-              onWillAccept: (data) => data != null && data['id'] != tiles[index]['id'],
+              onWillAccept: (data) =>
+                  data != null && data['id'] != tiles[index]['id'],
               onAccept: (draggedItem) {
                 setState(() {
-                  final draggedIndex = tiles.indexWhere((item) => item['id'] == draggedItem['id']);
+                  final draggedIndex = tiles
+                      .indexWhere((item) => item['id'] == draggedItem['id']);
                   final targetIndex = index;
-                  
+
                   if (draggedIndex != targetIndex) {
                     final item = tiles.removeAt(draggedIndex);
                     tiles.insert(targetIndex, item);
@@ -319,8 +320,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         print('Add button tapped for ${tile['title']}');
                       },
                       child: Container(
-                        width: 30,
-                        height: 30,
+                        width: 20,
+                        height: 20,
                         decoration: BoxDecoration(
                           color: AppColor.primary,
                           shape: BoxShape.circle,
@@ -328,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: const Icon(
                           Icons.add,
                           color: AppColor.whiteColor,
-                          size: 20,
+                          size: 15,
                         ),
                       ),
                     ),
@@ -363,16 +364,16 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text(
                 AppCommonString.trading,
-                style: AppTextStyles.medium.copyWith(
-                  fontSize: 16,
+                style: AppTextStyles.regular.copyWith(
+                  fontSize: 14,
                   color: AppColor.greyText,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 "₹₹₹",
-                style: AppTextStyles.bold.copyWith(
-                  fontSize: 18,
+                style: AppTextStyles.semiBold.copyWith(
+                  fontSize: 14,
                   color: AppColor.blackColor,
                 ),
               ),
@@ -382,10 +383,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: AppColor.lightOrangeColor,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: AppColor.primary)
-            ),
+                color: AppColor.lightOrangeColor,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: AppColor.primary)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -399,7 +399,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(width: 6),
                 Image.asset(
                   AppImage.upmoveRedirectIcon,
-                  width: 16, height: 16,
+                  width: 16,
+                  height: 16,
                   color: AppColor.primary,
                 ),
               ],
@@ -422,8 +423,8 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text(
                 AppCommonString.other,
-                style: AppTextStyles.semiBold.copyWith(
-                  fontSize: 18,
+                style: AppTextStyles.medium.copyWith(
+                  fontSize: 16,
                   color: AppColor.blackColor,
                 ),
               ),
@@ -433,21 +434,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Text(
                   AppCommonString.viewAll,
-                  style: AppTextStyles.medium.copyWith(
-                    fontSize: 14,
-                    color: AppColor.primary,
-                    decoration: TextDecoration.underline,
-                  ),
+                  style: AppTextStyles.semiBold.copyWith(
+                      fontSize: 12,
+                      color: AppColor.blackColor,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColor.blackColor),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 20),
           // List of cards
-          ...otherItems.map((item) => Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: _buildOtherCard(item),
-          )).toList(),
+          ...otherItems
+              .map((item) => Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: _buildOtherCard(item),
+                  ))
+              .toList(),
         ],
       ),
     );
@@ -477,16 +480,16 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   item['title'],
-                  style: AppTextStyles.medium.copyWith(
-                    fontSize: 16,
+                  style: AppTextStyles.regular.copyWith(
+                    fontSize: 12,
                     color: AppColor.blackColor,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   item['value'],
-                  style: AppTextStyles.regular.copyWith(
-                    fontSize: 14,
+                  style: AppTextStyles.semiBold.copyWith(
+                    fontSize: 18,
                     color: AppColor.blackColor,
                   ),
                 ),
@@ -500,16 +503,15 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Text(
               item['action'],
-              style: AppTextStyles.medium.copyWith(
-                fontSize: 14,
-                color: AppColor.primary,
-                decoration: TextDecoration.underline,
-              ),
+              style: AppTextStyles.semiBold.copyWith(
+                  fontSize: 12,
+                  color: AppColor.primary,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColor.primary),
             ),
           ),
         ],
       ),
     );
   }
-
 }

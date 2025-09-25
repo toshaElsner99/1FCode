@@ -27,6 +27,7 @@ class AppTextField extends StatelessWidget {
   final InputBorder? focusedBorder;
   final bool? isFilledColor;
   final TextStyle? style;
+  final int? maxLines;
 
   const AppTextField({
     Key? key,
@@ -50,6 +51,7 @@ class AppTextField extends StatelessWidget {
     this.focusedBorder,
     this.isFilledColor,
     this.style,
+    this.maxLines,
   }) : super(key: key);
 
   @override
@@ -79,6 +81,7 @@ class AppTextField extends StatelessWidget {
               enabled: isNotEnabled ?? true,
               validator: validator,
               maxLength: maxLength,
+              maxLines: maxLines,
               inputFormatters: inputFormatters,
               textAlign: textAlign ?? TextAlign.start,
               style: style ?? TextStyle(),

@@ -50,31 +50,30 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
         title: AppCommonString.profile,
         backgroundColor: AppColor.screenBgColor,
         centerTitle: true,
+        showBack: false
       ),
       backgroundColor: AppColor.screenBgColor,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                // User Profile Section
-                _buildUserProfileSection(),
-                const SizedBox(height: 30),
-
-                // Menu Options Card
-                _buildMenuOptionsCard(),
-                const SizedBox(height: 20),
-                
-                // Delete Account Section
-                _buildDeleteAccountSection(),
-                const SizedBox(height: 30)
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  // User Profile Section
+                  _buildUserProfileSection(),
+                  const SizedBox(height: 30),
+        
+                  // Menu Options Card
+                  _buildMenuOptionsCard(),
+                  // const SizedBox(height: 10)
+                ],
+              ),
             ),
-          ),
-          // Log Out Button
-          _buildLogOutButton(),
-        ],
+            // Log Out Button
+            _buildLogOutButton(),
+          ],
+        ),
       ),
     );
   }
@@ -183,6 +182,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             icon: AppImage.nomineeIcon,
             title: AppCommonString.nomineesInfo,
             onTap: () => _onMenuItemTap(AppCommonString.nomineesInfo),
+          ),
+          _buildMenuItem(
+            icon: Icons.delete_outline,
+            title: AppCommonString.deleteAccount,
+            onTap: _onDeleteAccount,
+            isRedColor: true,
             showDivider: false,
           ),
         ],
@@ -191,96 +196,55 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   }
 
   Widget _buildMenuItem({
-    required String icon,
+    required dynamic icon, // Changed to dynamic to accept both String and IconData
     required String title,
     required VoidCallback? onTap,
     bool isDisabled = false,
     bool showDivider = true,
+    bool isRedColor = false,
   }) {
-    return Padding(
-      padding: EdgeInsetsGeometry.all(10),
-      child: InkWell(
-        onTap: isDisabled ? null : onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Row(
-            children: [
+    return InkWell(
+      onTap: isDisabled ? null : onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            // Icon handling for both String (asset) and IconData
+            if (icon is String)
               Image.asset(
                 icon,
-                color: isDisabled ? AppColor.greyText : AppColor.blackColor,
+                color: isDisabled ? AppColor.greyText : (isRedColor ? AppColor.redColor : AppColor.blackColor),
                 width: 24,
                 height: 24
+              )
+            else if (icon is IconData)
+              Icon(
+                icon,
+                color: isDisabled ? AppColor.greyText : (isRedColor ? AppColor.redColor : AppColor.blackColor),
+                size: 24,
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  title,
-                  style: AppTextStyles.medium.copyWith(
-                    color: isDisabled ? AppColor.greyText : AppColor.blackColor,
-                    fontSize: 14,
-                  ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                title,
+                style: AppTextStyles.medium.copyWith(
+                  color: isDisabled ? AppColor.greyText : (isRedColor ? AppColor.redColor : AppColor.blackColor),
+                  fontSize: 14,
                 ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: isDisabled ? AppColor.greyText : AppColor.blackColor,
-                size: 16,
-              ),
-            ],
-          ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: isDisabled ? AppColor.greyText : (isRedColor ? AppColor.redColor : AppColor.blackColor),
+              size: 16,
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildDeleteAccountSection() {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColor.whiteColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.blackColor.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: InkWell(
-        onTap: _onDeleteAccount,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Row(
-            children: [
-              Icon(
-                Icons.delete_outline,
-                color: AppColor.redColor,
-                size: 24,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  AppCommonString.deleteAccount,
-                  style: AppTextStyles.medium.copyWith(
-                    color: AppColor.redColor,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: AppColor.redColor,
-                size: 16,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _buildLogOutButton() {
     return Center(

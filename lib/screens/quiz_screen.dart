@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oneFCode/utils/app_colors.dart';
 import 'package:oneFCode/utils/app_text_styles.dart';
 import 'package:oneFCode/utils/app_common_strings.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -13,7 +14,7 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int currentQuestionIndex = 0;
   int? selectedAnswerIndex;
-  
+
   final List<Map<String, dynamic>> questions = [
     {
       'question': AppCommonString.question1,
@@ -128,42 +129,43 @@ class _QuizScreenState extends State<QuizScreen> {
       backgroundColor: AppColor.lightOrangeColor,
       body: Column(
         children: [
-            // Custom App Bar
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                color: AppColor.lightOrangeColor, // Light beige color
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
+          // Custom App Bar
+          Container(
+            height: 150,
+            decoration: BoxDecoration(
+              color: AppColor.lightOrangeColor, // Light beige color
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Row(
-                    children: [
-                      // Back button (only show if not first question)
-                      if (currentQuestionIndex > 0)
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              currentQuestionIndex--;
-                              selectedAnswerIndex = null;
-                            });
-                          },
-                          child: Icon(
-                            Icons.chevron_left,
-                            color: AppColor.blackColor,
-                            size: 24,
-                          ),
-                        )
-                    ],
-                  ),
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Row(
+                  children: [
+                    // Back button (only show if not first question)
+                    if (currentQuestionIndex > 0)
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            currentQuestionIndex--;
+                            selectedAnswerIndex = null;
+                          });
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: AppColor.blackColor,
+                          size: 24,
+                        ),
+                      )
+                  ],
                 ),
               ),
             ),
-          
+          ),
+
           // Main Content
           Expanded(
             child: Container(
@@ -184,15 +186,17 @@ class _QuizScreenState extends State<QuizScreen> {
                         color: AppColor.blackColor,
                       ),
                     ),
-                    
-                    const SizedBox(height: 24),
-                    
+
+                    const SizedBox(height: 10),
+
                     // Answer options
                     Expanded(
                       child: ListView.builder(
-                        itemCount: questions[currentQuestionIndex]['options'].length,
+                        itemCount:
+                            questions[currentQuestionIndex]['options'].length,
                         itemBuilder: (context, index) {
-                          final option = questions[currentQuestionIndex]['options'][index];
+                          final option =
+                              questions[currentQuestionIndex]['options'][index];
                           final isSelected = selectedAnswerIndex == index;
 
                           return GestureDetector(
@@ -208,12 +212,15 @@ class _QuizScreenState extends State<QuizScreen> {
                                 color: AppColor.whiteColor,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: isSelected ? AppColor.primary : AppColor.textFieldBorderColor,
+                                  color: isSelected
+                                      ? AppColor.primary
+                                      : AppColor.textFieldBorderColor,
                                   width: isSelected ? 2 : 1,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AppColor.blackColor.withOpacity(0.05),
+                                    color:
+                                        AppColor.blackColor.withOpacity(0.05),
                                     blurRadius: 8,
                                     offset: const Offset(0, 2),
                                   ),
@@ -244,47 +251,45 @@ class _QuizScreenState extends State<QuizScreen> {
                         },
                       ),
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Next/Complete button
                     Center(
                       child: GestureDetector(
                         onTap: selectedAnswerIndex != null ? _handleNext : null,
                         child: Text(
-                          currentQuestionIndex == questions.length - 1 ? AppCommonString.complete : AppCommonString.next,
+                          currentQuestionIndex == questions.length - 1
+                              ? AppCommonString.complete
+                              : AppCommonString.next,
                           style: AppTextStyles.semiBold.copyWith(
                             fontSize: 18,
-                            color: selectedAnswerIndex != null ? AppColor.primary : AppColor.greyText.withOpacity(0.5),
+                            color: selectedAnswerIndex != null
+                                ? AppColor.primary
+                                : AppColor.greyText.withOpacity(0.5),
                           ),
                         ),
                       ),
                     ),
-                    
+
                     const SizedBox(height: 20),
-                    
-                    // Progress bar with orange outline
+                    // Progress bar with always visible orange outline
                     Container(
-                      height: 6,
                       decoration: BoxDecoration(
-                        color: AppColor.whiteColor,
-                        borderRadius: BorderRadius.circular(3),
-                        border: Border.all(
-                          color: AppColor.primary,
-                          width: 1,
-                        ),
+                        border: Border.all(color: AppColor.primary, width: 1.5), // orange border
+                        borderRadius: BorderRadius.circular(4),
                       ),
-                      child: FractionallySizedBox(
-                        alignment: Alignment.centerLeft,
-                        widthFactor: (currentQuestionIndex + 1) / questions.length,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColor.primary,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
+                      child: StepProgressIndicator(
+                        totalSteps: questions.length, // total = number of questions
+                        currentStep: currentQuestionIndex + 1, // current step
+                        size: 8,
+                        padding: 0,
+                        roundedEdges: Radius.circular(4),
+                        selectedColor: AppColor.primary, // orange fill
+                        unselectedColor: Colors.white,   // white background
                       ),
                     ),
+                    const SizedBox(height: 50),
                   ],
                 ),
               ),

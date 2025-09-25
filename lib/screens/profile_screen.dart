@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       appBar: AppCommonAppBar(title: widget.isFromEdit ? AppCommonString.editProfile : AppCommonString.profile,
-      backgroundColor: AppColor.screenBgColor,centerTitle: true
+      backgroundColor: AppColor.screenBgColor,centerTitle: true,
       ),
       backgroundColor: AppColor.screenBgColor,
       body: Padding(

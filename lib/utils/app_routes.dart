@@ -8,6 +8,7 @@ import 'package:oneFCode/screens/profile_screen.dart';
 import 'package:oneFCode/screens/bottom_navigation_bar_screen.dart';
 import 'package:oneFCode/screens/home_screen.dart';
 import 'package:oneFCode/screens/quiz_screen.dart';
+import 'package:oneFCode/screens/add_bank_details_screen.dart';
 
 class RouteConstant {
   static final signInScreen = 'signInScreen';
@@ -17,6 +18,7 @@ class RouteConstant {
   static final bottomNavigationBarScreen = 'bottomNavigationBarScreen';
   static final homeScreen = 'homeScreen';
   static final quizScreen = 'quizScreen';
+  static final addBankDetailsScreen = 'addBankDetailsScreen';
 }
 
 class RouteGenerator {
@@ -28,6 +30,7 @@ class RouteGenerator {
     RouteConstant.bottomNavigationBarScreen: (context) => BottomNavigationBarScreen(),
     RouteConstant.homeScreen: (context) => const HomeScreen(),
     RouteConstant.quizScreen: (context) => const QuizScreen(),
+    RouteConstant.addBankDetailsScreen: (context) => const AddBankDetailsScreen(),
   };
 }
 

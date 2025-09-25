@@ -78,6 +78,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         title: AppCommonString.notifications,
         backgroundColor: AppColor.screenBgColor,
         centerTitle: true,
+        showBack: false,
       ),
       backgroundColor: AppColor.screenBgColor,
       body: _notifications.isEmpty ? _buildEmptyState() : _buildNotificationsList(),
