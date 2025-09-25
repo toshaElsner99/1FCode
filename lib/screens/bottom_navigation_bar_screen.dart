@@ -3,11 +3,8 @@ import 'package:oneFCode/screens/market_screen.dart';
 import 'package:oneFCode/screens/profile_settings_screen.dart';
 import 'package:oneFCode/utils/app_colors.dart';
 import 'package:oneFCode/utils/app_text_styles.dart';
-import 'package:oneFCode/utils/app_common_strings.dart';
-import 'package:oneFCode/utils/app_image.dart';
 import 'package:oneFCode/screens/notifications_screen.dart';
 import 'package:oneFCode/screens/home_screen.dart';
-import 'package:oneFCode/screens/add_bank_details_screen.dart';
 import 'package:oneFCode/utils/app_routes.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
@@ -64,7 +61,7 @@ class _BottomNavigationBarScreenState
         backgroundColor: AppColor.primary,
         elevation: 0,
         onPressed: () {
-          Navigator.pushNamed(context, RouteConstant.addBankDetailsScreen);
+          Navigator.pushNamed(context, RouteConstant.addManuallyPopup);
         },
         child: const Icon(
           Icons.add,

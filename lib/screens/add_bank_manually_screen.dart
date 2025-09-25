@@ -10,15 +10,16 @@ import 'package:oneFCode/widgets/app_button.dart';
 import 'package:oneFCode/widgets/app_common_textfields.dart';
 import 'package:oneFCode/widgets/app_common_appbar.dart';
 import 'package:oneFCode/utils/app_routes.dart';
+import 'package:oneFCode/widgets/common_popup.dart';
 
-class AddBankDetailsScreen extends StatefulWidget {
-  const AddBankDetailsScreen({super.key});
+class AddBankManuallyScreen extends StatefulWidget {
+  const AddBankManuallyScreen({super.key});
 
   @override
-  State<AddBankDetailsScreen> createState() => _AddBankDetailsScreenState();
+  State<AddBankManuallyScreen> createState() => _AddBankManuallyScreenState();
 }
 
-class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
+class _AddBankManuallyScreenState extends State<AddBankManuallyScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // Controllers
@@ -88,7 +89,7 @@ class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  "Please fill in all the required bank details below",
+                  AppCommonString.pleaseFillRequiredDetails,
                   style: AppTextStyles.medium
                       .copyWith(color: AppColor.greyText, fontSize: 14),
                 ),
@@ -245,7 +246,7 @@ class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    _selectedAccountType ?? 'Select Account Type',
+                    _selectedAccountType ?? AppCommonString.selectAccountType,
                     style: AppTextStyles.regular.copyWith(
                       fontSize: 14,
                       color: _selectedAccountType != null
@@ -320,7 +321,7 @@ class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
         ),
         const SizedBox(height: 12),
         Text(
-          'File Selected Successfully',
+          AppCommonString.fileSelectedSuccessfully,
           style: AppTextStyles.medium.copyWith(
             fontSize: 14,
             color: AppColor.greenTextColor,
@@ -328,7 +329,7 @@ class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
         ),
         const SizedBox(height: 8),
         Text(
-          'Tap to select a different file',
+          AppCommonString.tapToSelectDifferentFile,
           style: AppTextStyles.regular.copyWith(
             fontSize: 12,
             color: AppColor.greyText,
@@ -459,22 +460,22 @@ class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
         
         // Validate file size (10 MB limit)
         if (file.size > 10 * 1024 * 1024) {
-          AppUtils.instance.showSnackBar(
-            context,
-            'File size must not exceed 10 MB',
-            backgroundColor: AppColor.redColor,
-          );
+        AppUtils.instance.showSnackBar(
+          context,
+          AppCommonString.fileSizeExceeded,
+          backgroundColor: AppColor.redColor,
+        );
           return;
         }
 
         // Validate file extension
         String extension = file.extension?.toLowerCase() ?? '';
         if (!['pdf', 'jpg', 'jpeg', 'png'].contains(extension)) {
-          AppUtils.instance.showSnackBar(
-            context,
-            'Please select a PDF, JPG, JPEG, or PNG file',
-            backgroundColor: AppColor.redColor,
-          );
+        AppUtils.instance.showSnackBar(
+          context,
+          AppCommonString.invalidFileFormat,
+          backgroundColor: AppColor.redColor,
+        );
           return;
         }
 
@@ -484,14 +485,14 @@ class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
 
         AppUtils.instance.showSnackBar(
           context,
-          'File selected successfully!',
+          AppCommonString.fileSelectedSuccess,
           backgroundColor: AppColor.greenTextColor,
         );
       }
     } catch (e) {
       AppUtils.instance.showSnackBar(
         context,
-        'Error selecting file: ${e.toString()}',
+        '${AppCommonString.errorSelectingFile} ${e.toString()}',
         backgroundColor: AppColor.redColor,
       );
     } finally {
@@ -510,24 +511,26 @@ class _AddBankDetailsScreenState extends State<AddBankDetailsScreen> {
   void _saveBankDetails() {
     if (_formKey.currentState!.validate() && _selectedAccountType != null && _selectedFile != null) {
       // TODO: Implement save functionality
-      AppUtils.instance.showSnackBar(
+      PopupService.instance.showSuccessPopupWithAutoDismiss(
         context,
-        'Bank details saved successfully!',
-        backgroundColor: AppColor.greenTextColor,
+        AppCommonString.bankAddedSuccessfully,
+        message: AppCommonString.bankAddedSuccessMessage,
+        delay: const Duration(seconds: 2),
+        onDismiss: () {
+          // Navigate back or to next screen
+          Navigator.pop(context);
+        },
       );
-
-      // Navigate back or to next screen
-      Navigator.pop(context);
     } else if (_selectedAccountType == null) {
       AppUtils.instance.showSnackBar(
         context,
-        'Please select account type',
+        AppCommonString.pleaseSelectAccountType,
         backgroundColor: AppColor.redColor,
       );
     } else if (_selectedFile == null) {
       AppUtils.instance.showSnackBar(
         context,
-        'Please upload bank statement',
+        AppCommonString.pleaseUploadStatement,
         backgroundColor: AppColor.redColor,
       );
     }

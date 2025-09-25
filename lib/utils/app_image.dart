@@ -28,6 +28,9 @@ class AppImage {
   static const dummyProfileIcon = "assets/images/dummy_profile.png";
   static const upmoveRedirectIcon = "assets/images/upmove_redirect.png";
   static const uploadDocIcon = "assets/images/upload_doc.png";
+  static const bankIcon = "assets/images/bank.png";
+  static const bankHomeIcon = "assets/images/bank_home.png";
+  static const crossIcon = "assets/images/cross.png";
 
   // Bottom Navigation Icons
   static const homeIcon = "assets/images/home.png";

@@ -156,4 +156,282 @@ class AppUtils {
     }
     return null;
   }
+
+  // Stock Details Validators
+  String? validateStockName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter stock name';
+    }
+    if (value.length < 2) {
+      return 'Stock name must be at least 2 characters';
+    }
+    if (value.length > 100) {
+      return 'Stock name must not exceed 100 characters';
+    }
+    if (!RegExp(r'^[a-zA-Z\s&.,-]+$').hasMatch(value)) {
+      return 'Stock name can only contain letters, spaces, &, ., ,, -';
+    }
+    return null;
+  }
+
+  String? validateStockSymbol(String? value) {
+    if (value != null && value.isNotEmpty) {
+      if (value.length < 1) {
+        return 'Stock symbol must be at least 1 character';
+      }
+      if (value.length > 10) {
+        return 'Stock symbol must not exceed 10 characters';
+      }
+      if (!RegExp(r'^[A-Za-z0-9]+$').hasMatch(value)) {
+        return 'Stock symbol can only contain letters and numbers';
+      }
+    }
+    return null;
+  }
+
+  String? validateNumberOfShares(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter number of shares';
+    }
+    if (!RegExp(r'^\d+$').hasMatch(value)) {
+      return 'Please enter a valid number of shares';
+    }
+    final shares = int.tryParse(value);
+    if (shares == null) {
+      return 'Please enter a valid number';
+    }
+    if (shares <= 0) {
+      return 'Number of shares must be greater than 0';
+    }
+    if (shares > 999999999) {
+      return 'Number of shares cannot exceed 999,999,999';
+    }
+    return null;
+  }
+
+  String? validatePurchasePrice(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter purchase price';
+    }
+    if (!RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(value)) {
+      return 'Please enter a valid price (e.g., 100 or 100.50)';
+    }
+    final price = double.tryParse(value);
+    if (price == null) {
+      return 'Please enter a valid number';
+    }
+    if (price <= 0) {
+      return 'Purchase price must be greater than 0';
+    }
+    if (price > 999999.99) {
+      return 'Purchase price cannot exceed ₹9,99,999.99';
+    }
+    return null;
+  }
+
+  String? validatePurchaseDate(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please select purchase date';
+    }
+    return null;
+  }
+
+  // Mutual Fund Details Validators
+  String? validateFundName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter fund name';
+    }
+    if (value.length < 2) {
+      return 'Fund name must be at least 2 characters';
+    }
+    if (value.length > 100) {
+      return 'Fund name must not exceed 100 characters';
+    }
+    if (!RegExp(r'^[a-zA-Z\s&.,-]+$').hasMatch(value)) {
+      return 'Fund name can only contain letters, spaces, &, ., ,, -';
+    }
+    return null;
+  }
+
+  String? validateAMC(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter AMC name';
+    }
+    if (value.length < 2) {
+      return 'AMC name must be at least 2 characters';
+    }
+    if (value.length > 100) {
+      return 'AMC name must not exceed 100 characters';
+    }
+    if (!RegExp(r'^[a-zA-Z\s&.,-]+$').hasMatch(value)) {
+      return 'AMC name can only contain letters, spaces, &, ., ,, -';
+    }
+    return null;
+  }
+
+  String? validateFolioNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter folio number';
+    }
+    if (value.length < 3) {
+      return 'Folio number must be at least 3 characters';
+    }
+    if (value.length > 20) {
+      return 'Folio number must not exceed 20 characters';
+    }
+    if (!RegExp(r'^[A-Za-z0-9]+$').hasMatch(value)) {
+      return 'Folio number can only contain letters and numbers';
+    }
+    return null;
+  }
+
+  String? validateInvestmentAmount(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter investment amount';
+    }
+    if (!RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(value)) {
+      return 'Please enter a valid amount (e.g., 1000 or 1000.50)';
+    }
+    final amount = double.tryParse(value);
+    if (amount == null) {
+      return 'Please enter a valid number';
+    }
+    if (amount <= 0) {
+      return 'Investment amount must be greater than 0';
+    }
+    if (amount > 999999999.99) {
+      return 'Investment amount cannot exceed ₹99,99,99,999.99';
+    }
+    return null;
+  }
+
+  String? validateNAV(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter NAV';
+    }
+    if (!RegExp(r'^\d+(\.\d{1,4})?$').hasMatch(value)) {
+      return 'Please enter a valid NAV (e.g., 100.1234)';
+    }
+    final nav = double.tryParse(value);
+    if (nav == null) {
+      return 'Please enter a valid number';
+    }
+    if (nav <= 0) {
+      return 'NAV must be greater than 0';
+    }
+    if (nav > 99999.9999) {
+      return 'NAV cannot exceed 99,999.9999';
+    }
+    return null;
+  }
+
+  // Insurance Details Validators
+  String? validatePolicyName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter policy name';
+    }
+    if (value.length < 2) {
+      return 'Policy name must be at least 2 characters';
+    }
+    if (value.length > 100) {
+      return 'Policy name must not exceed 100 characters';
+    }
+    if (!RegExp(r'^[a-zA-Z\s&.,-]+$').hasMatch(value)) {
+      return 'Policy name can only contain letters, spaces, &, ., ,, -';
+    }
+    return null;
+  }
+
+  String? validatePolicyNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter policy number';
+    }
+    if (value.length < 3) {
+      return 'Policy number must be at least 3 characters';
+    }
+    if (value.length > 20) {
+      return 'Policy number must not exceed 20 characters';
+    }
+    if (!RegExp(r'^[A-Za-z0-9]+$').hasMatch(value)) {
+      return 'Policy number can only contain letters and numbers';
+    }
+    return null;
+  }
+
+  String? validateInsuranceProvider(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter insurance provider';
+    }
+    if (value.length < 2) {
+      return 'Insurance provider must be at least 2 characters';
+    }
+    if (value.length > 100) {
+      return 'Insurance provider must not exceed 100 characters';
+    }
+    if (!RegExp(r'^[a-zA-Z\s&.,-]+$').hasMatch(value)) {
+      return 'Insurance provider can only contain letters, spaces, &, ., ,, -';
+    }
+    return null;
+  }
+
+  String? validateSumAssured(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter sum assured';
+    }
+    if (!RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(value)) {
+      return 'Please enter a valid amount (e.g., 100000 or 100000.50)';
+    }
+    final amount = double.tryParse(value);
+    if (amount == null) {
+      return 'Please enter a valid number';
+    }
+    if (amount <= 0) {
+      return 'Sum assured must be greater than 0';
+    }
+    if (amount > 999999999.99) {
+      return 'Sum assured cannot exceed ₹99,99,99,999.99';
+    }
+    return null;
+  }
+
+  String? validatePremiumAmount(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter premium amount';
+    }
+    if (!RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(value)) {
+      return 'Please enter a valid amount (e.g., 1000 or 1000.50)';
+    }
+    final amount = double.tryParse(value);
+    if (amount == null) {
+      return 'Please enter a valid number';
+    }
+    if (amount <= 0) {
+      return 'Premium amount must be greater than 0';
+    }
+    if (amount > 999999.99) {
+      return 'Premium amount cannot exceed ₹9,99,999.99';
+    }
+    return null;
+  }
+
+  String? validatePremiumFrequency(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please select premium frequency';
+    }
+    return null;
+  }
+
+  String? validateStartDate(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please select start date';
+    }
+    return null;
+  }
+
+  String? validateMaturityDate(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please select maturity date';
+    }
+    return null;
+  }
 }

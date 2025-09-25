@@ -13,11 +13,12 @@ class PopupService {
   static final PopupService instance = PopupService._internal();
 
   /// Show success popup with dynamic text
-  void showSuccessPopup(BuildContext context, String message) {
+  void showSuccessPopup(BuildContext context, String title, {String? message}) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => _StatusPopup(
+        title: title,
         message: message,
         popupType: PopupType.success,
       ),
@@ -25,7 +26,8 @@ class PopupService {
   }
 
   /// Auto-dismiss success popup after delay
-  void showSuccessPopupWithAutoDismiss(BuildContext context, String message, {
+  void showSuccessPopupWithAutoDismiss(BuildContext context, String title, {
+    String? message,
     Duration delay = const Duration(seconds: 2),
     VoidCallback? onDismiss,
   }) {
@@ -33,6 +35,7 @@ class PopupService {
       context: context,
       barrierDismissible: false,
       builder: (context) => _StatusPopup(
+        title: title,
         message: message,
         popupType: PopupType.success,
         autoDismiss: true,
@@ -42,35 +45,6 @@ class PopupService {
     );
   }
 
-  /// Show failure popup with dynamic text
-  void showFailurePopup(BuildContext context, String message) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => _StatusPopup(
-        message: message,
-        popupType: PopupType.failure,
-      ),
-    );
-  }
-
-  /// Auto-dismiss failure popup after delay
-  void showFailurePopupWithAutoDismiss(BuildContext context, String message, {
-    Duration delay = const Duration(seconds: 2),
-    VoidCallback? onDismiss,
-  }) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => _StatusPopup(
-        message: message,
-        popupType: PopupType.failure,
-        autoDismiss: true,
-        delay: delay,
-        onDismiss: onDismiss,
-      ),
-    );
-  }
 }
 
 enum PopupType { success, failure }
@@ -188,14 +162,16 @@ class ConfirmationDialog {
 }
 
 class _StatusPopup extends StatefulWidget {
-  final String message;
+  final String title;
+  final String? message;
   final PopupType popupType;
   final bool autoDismiss;
   final Duration delay;
   final VoidCallback? onDismiss;
 
   const _StatusPopup({
-    required this.message,
+    required this.title,
+    this.message,
     required this.popupType,
     this.autoDismiss = false,
     this.delay = const Duration(seconds: 2),
@@ -291,13 +267,24 @@ class _StatusPopupState extends State<_StatusPopup> {
             ),
             const SizedBox(height: 16),
             Text(
-              widget.message,
+              widget.title,
               textAlign: TextAlign.center,
               style: AppTextStyles.semiBold.copyWith(
-                fontSize: 16,
+                fontSize: 18,
                 color: AppColor.blackColor,
               ),
             ),
+            if (widget.message != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                widget.message!,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.regular.copyWith(
+                  fontSize: 14,
+                  color: AppColor.greyText,
+                ),
+              ),
+            ],
             if (!widget.autoDismiss) ...[
               const SizedBox(height: 20),
               SizedBox(

@@ -299,4 +299,116 @@ class AppCommonString {
   static const String current = "Current";
   static const String fixedDeposit = "Fixed Deposit";
   static const String recurringDeposit = "Recurring Deposit";
+
+  // Add Manually Popup
+  static const String addManually = "Add Manually";
+  static const String chooseAssetType = "Choose the type of asset you want to add";
+  static const String addBankAccounts = "Add bank accounts";
+  static const String addIndividualStocks = "Add individual Stocks";
+  static const String addMutualFunds = "Add Mutual Funds";
+  static const String addInsurancePolicies = "Add Insurance Policies";
+  static const String stockFeatureComingSoon = "Stock feature coming soon!";
+  static const String mutualFundFeatureComingSoon = "Mutual Fund feature coming soon!";
+  static const String insuranceFeatureComingSoon = "Insurance feature coming soon!";
+
+  // Stock Details Screen
+  static const String addStockDetails = "Add Stock Details";
+  static const String enterYourStockDetails = "Enter Your Stock Details";
+  static const String stockName = "Stock Name";
+  static const String stockSymbol = "Stock Symbol";
+  static const String numberOfShares = "Number of Shares";
+  static const String purchasePricePerShare = "Purchase Price per Share";
+  static const String purchaseDate = "Purchase Date";
+  static const String uploadDocument = "Upload Document";
+  static const String uploadDocumentText = "Upload Document";
+  static const String maxFileSizeDocument = "Max. file size: 10 MB (Pdf, Jpeg, Png)";
+  static const String saveStockDetails = "Save Stock Details";
+
+  // Mutual Fund Details Screen
+  static const String addMutualFundDetails = "Add Mutual Fund Details";
+  static const String enterYourMFDetails = "Enter Your MF Details";
+  static const String fundName = "Fund Name";
+  static const String amc = "AMC (Asset Management Company)";
+  static const String folioNumber = "Folio Number";
+  static const String investmentAmount = "Investment Amount";
+  static const String navAtPurchase = "NAV at Purchase";
+  static const String saveMutualFundDetails = "Save Mutual Fund Details";
+
+  // Insurance Details Screen
+  static const String addInsuranceDetails = "Add Insurance Details";
+  static const String enterYourInsuranceDetails = "Enter Your Insurance Details";
+  static const String policyName = "Policy Name";
+  static const String policyNumber = "Policy Number";
+  static const String insuranceProvider = "Insurance Provider";
+  static const String sumAssured = "Sum Assured";
+  static const String premiumAmount = "Premium Amount";
+  static const String premiumFrequency = "Premium Frequency";
+  static const String maturityDate = "Maturity Date";
+  static const String saveInsuranceDetails = "Save Insurance Details";
+
+  // Premium Frequency Options
+  static const String monthly = "Monthly";
+  static const String quarterly = "Quarterly";
+  static const String halfYearly = "Half Yearly";
+  static const String yearly = "Yearly";
+
+  // Common UI Strings
+  static const String pleaseFillRequiredDetails = "Please fill in all the required details below";
+  static const String fileSelectedSuccessfully = "File Selected Successfully";
+  static const String tapToSelectDifferentFile = "Tap to select a different file";
+  static const String fileSizeExceeded = "File size must not exceed 10 MB";
+  static const String invalidFileFormat = "Please select a PDF, JPG, JPEG, or PNG file";
+  static const String fileSelectedSuccess = "File selected successfully!";
+  static const String errorSelectingFile = "Error selecting file:";
+  static const String selectPurchaseDate = "Select Purchase Date";
+  static const String selectStartDate = "Select Start Date";
+  static const String selectMaturityDate = "Select Maturity Date";
+  static const String selectAccountType = "Select Account Type";
+  static const String selectPremiumFrequency = "Select Premium Frequency";
+  static const String pleaseSelectPurchaseDate = "Please select purchase date";
+  static const String pleaseSelectStartDate = "Please select start date";
+  static const String pleaseSelectMaturityDate = "Please select maturity date";
+  static const String pleaseSelectAccountType = "Please select account type";
+  static const String pleaseSelectPremiumFrequency = "Please select premium frequency";
+  static const String pleaseUploadDocument = "Please upload document";
+  static const String pleaseUploadStatement = "Please upload bank statement";
+  static const String detailsSavedSuccessfully = "Details saved successfully!";
+  static const String bankDetailsSavedSuccess = "Bank details saved successfully!";
+  static const String stockDetailsSavedSuccess = "Stock details saved successfully!";
+  static const String mutualFundDetailsSavedSuccess = "Mutual fund details saved successfully!";
+  static const String insuranceDetailsSavedSuccess = "Insurance details saved successfully!";
+
+  // Success Popup Messages
+  static const String bankAddedSuccessfully = "Bank Added Successfully";
+  static const String bankAddedSuccessMessage = "Your bank details have been saved and will be processed shortly.";
+  static const String stockAddedSuccessfully = "Stock Added Successfully";
+  static const String stockAddedSuccessMessage = "Your stock details have been saved and will be processed shortly.";
+  static const String mutualFundAddedSuccessfully = "Mutual Fund Added Successfully";
+  static const String mutualFundAddedSuccessMessage = "Your mutual fund details have been saved and will be processed shortly.";
+  static const String insuranceAddedSuccessfully = "Insurance Added Successfully";
+  static const String insuranceAddedSuccessMessage = "Your insurance details have been saved and will be processed shortly.";
+
+  // View Bank Details Screen
+  static const String bankDetails = "Bank Details";
+  static const String hdfcBank = "HDFC Bank";
+  static const String savingAccount = "Saving Account";
+  static const String accountNumber = "Account Number";
+  static const String maskedAccountNumber = "XXXX-XXXX-4578";
+  static const String availableBalance = "Available Balance";
+  static const String balanceAmount = "₹54,875.54";
+  static const String lastUpdated = "Last updated: Today, 2:34 PM";
+  static const String recentTransactions = "Recent Transactions";
+  static const String salaryDeposit = "Salary Deposit";
+  static const String bonusPayment = "Bonus Payment";
+  static const String groceryStore = "Grocery Store";
+  static const String electricBill = "Electric Bill";
+  static const String dec252023 = "Dec 25, 2023";
+  static const String jan152024 = "Jan 15, 2024";
+  static const String feb282024 = "Feb 28, 2024";
+  static const String feb102024 = "Feb 10, 2024";
+  static const String salaryAmount = "₹4,251.23";
+  static const String bonusAmount = "-₹127.84";
+  static const String groceryAmount = "-₹174.14";
+  static const String electricAmount = "₹850.75";
+  static const String electronicStore = "Electronic Store";
 }

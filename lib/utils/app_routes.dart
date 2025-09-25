@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:oneFCode/screens/add_bank_manually_screen.dart';
 import 'package:oneFCode/screens/sign_in_screen.dart';
 import 'package:oneFCode/screens/selfie_screen.dart';
 import 'package:oneFCode/screens/pan_verification_screen.dart';
@@ -8,7 +9,12 @@ import 'package:oneFCode/screens/profile_screen.dart';
 import 'package:oneFCode/screens/bottom_navigation_bar_screen.dart';
 import 'package:oneFCode/screens/home_screen.dart';
 import 'package:oneFCode/screens/quiz_screen.dart';
-import 'package:oneFCode/screens/add_bank_details_screen.dart';
+import 'package:oneFCode/screens/add_stock_manually_screen.dart';
+import 'package:oneFCode/screens/add_mutual_fund_manually_screen.dart';
+import 'package:oneFCode/screens/add_insurance_manually_screen.dart';
+import 'package:oneFCode/screens/view_bank_details_screen.dart';
+
+import '../screens/add_manually_popup.dart';
 
 class RouteConstant {
   static final signInScreen = 'signInScreen';
@@ -18,7 +24,12 @@ class RouteConstant {
   static final bottomNavigationBarScreen = 'bottomNavigationBarScreen';
   static final homeScreen = 'homeScreen';
   static final quizScreen = 'quizScreen';
-  static final addBankDetailsScreen = 'addBankDetailsScreen';
+  static final addManuallyPopup = 'addManuallyPopup';
+  static final addBankManually = 'addBankManually';
+  static final addStockManually = 'addStockManually';
+  static final addMutualFundsManually = 'addMutualFundsManually';
+  static final addInsuranceManually = 'addInsuranceManually';
+  static final viewBankDetails = 'viewBankDetails';
 }
 
 class RouteGenerator {
@@ -30,7 +41,12 @@ class RouteGenerator {
     RouteConstant.bottomNavigationBarScreen: (context) => BottomNavigationBarScreen(),
     RouteConstant.homeScreen: (context) => const HomeScreen(),
     RouteConstant.quizScreen: (context) => const QuizScreen(),
-    RouteConstant.addBankDetailsScreen: (context) => const AddBankDetailsScreen(),
+    RouteConstant.addManuallyPopup: (context) => const AddManuallyPopup(),
+    RouteConstant.addBankManually: (context) => const AddBankManuallyScreen(),
+    RouteConstant.addStockManually: (context) => const AddStockManuallyScreen(),
+    RouteConstant.addMutualFundsManually: (context) => const AddMutualFundManuallyScreen(),
+    RouteConstant.addInsuranceManually: (context) => const AddInsuranceManuallyScreen(),
+    RouteConstant.viewBankDetails: (context) => const ViewBankDetailsScreen(),
   };
 }
 
