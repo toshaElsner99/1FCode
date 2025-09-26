@@ -15,6 +15,8 @@ import '../widgets/app_common_appbar.dart';
 import 'package:oneFCode/services/storage_service/storage_keys.dart';
 import 'package:oneFCode/utils/validators.dart';
 import 'package:oneFCode/widgets/common_popup.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -175,8 +177,9 @@ class _SignInScreenState extends State<SignInScreen> {
         const SizedBox(height: 24),
         AppButton(
           text: AppCommonString.continueText,
-          onPressed: () {
+          onPressed: () async {
             // TODO: Verify OTP via API; on success navigate to selfie
+            await _generateFCMToken();
             PopupService.instance.showSuccessPopupWithAutoDismiss(
               context,
               AppCommonString.mobileVerifiedSuccess,
@@ -230,5 +233,65 @@ class _SignInScreenState extends State<SignInScreen> {
         onCompleted: onCompleted,
       ),
     );
+  }
+
+  /// Generate FCM Token after successful OTP verification
+  Future<void> _generateFCMToken() async {
+    try {
+      // Check if Firebase is initialized
+      if (Firebase.apps.isEmpty) {
+        print('Firebase not initialized. Please configure Firebase first.');
+        return;
+      }
+
+      // Request permission for notifications
+      NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+        alert: true,
+        announcement: false,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true,
+      );
+
+      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+        // Get FCM token
+        String? token = await FirebaseMessaging.instance.getToken();
+        
+        if (token != null) {
+          // Store FCM token in local storage
+          await StorageService.instance.setString(StorageKeys.fcmToken, token);
+          
+          // TODO: Send FCM token to your backend server
+          // await _sendFCMTokenToServer(token);
+          
+          print('FCM Token generated: $token');
+        } else {
+          print('Failed to get FCM token');
+        }
+      } else {
+        print('Notification permission denied');
+      }
+    } catch (e) {
+      print('Error generating FCM token: $e');
+      // Continue with app flow even if FCM fails
+    }
+  }
+
+  /// Send FCM token to backend server (implement as needed)
+  Future<void> _sendFCMTokenToServer(String token) async {
+    try {
+      // TODO: Implement API call to send FCM token to your backend
+      // Example:
+      // final response = await ApiService.instance.sendFCMToken({
+      //   'mobile': _mobileController.text.trim(),
+      //   'fcm_token': token,
+      // });
+      
+      print('FCM token sent to server: $token');
+    } catch (e) {
+      print('Error sending FCM token to server: $e');
+    }
   }
 }

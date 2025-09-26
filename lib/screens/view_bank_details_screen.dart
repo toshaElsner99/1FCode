@@ -4,6 +4,7 @@ import 'package:oneFCode/utils/app_image.dart';
 import 'package:oneFCode/utils/app_text_styles.dart';
 import 'package:oneFCode/utils/app_common_strings.dart';
 import 'package:oneFCode/widgets/app_common_appbar.dart';
+import 'package:oneFCode/widgets/circular_icon_widget.dart';
 
 class ViewBankDetailsScreen extends StatefulWidget {
   const ViewBankDetailsScreen({super.key});
@@ -47,6 +48,18 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
       amount: "-₹89.50",
       isCredit: false,
     ),
+    TransactionData(
+      title: AppCommonString.groceryStore,
+      date: AppCommonString.feb282024,
+      amount: AppCommonString.groceryAmount,
+      isCredit: false,
+    ),
+    TransactionData(
+      title: AppCommonString.electricBill,
+      date: AppCommonString.feb102024,
+      amount: AppCommonString.electricAmount,
+      isCredit: true,
+    ),
   ];
 
   @override
@@ -54,11 +67,12 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
     return Scaffold(
       backgroundColor: AppColor.screenBgColor,
       appBar: AppCommonAppBar(
+        backgroundColor: AppColor.screenBgColor,
         title: AppCommonString.bankDetails,
         showBack: true,
         action: [
           IconButton(
-            icon: const Icon(Icons.more_vert, color: AppColor.blackColor),
+            icon: Image.asset(AppImage.menuIcon, width: 24, height: 24),
             onPressed: () {
               // TODO: Show options menu
             },
@@ -73,16 +87,12 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
             // Bank Account Information Card
             _buildBankInfoCard(),
             const SizedBox(height: 16),
-            
+
             // Available Balance Card
             _buildBalanceCard(),
             const SizedBox(height: 24),
-            
+
             // Recent Transactions Section
-            _buildRecentTransactionsSection(),
-            const SizedBox(height: 16),
-            
-            // Transaction List
             _buildTransactionList(),
           ],
         ),
@@ -104,102 +114,80 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
           ),
         ],
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Bank Icon
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: AppColor.primary,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                AppImage.bankHomeIcon,
-                width: 60,
-                height: 60,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  // Fallback to Material icon if image fails to load
-                  return const Icon(
-                    Icons.account_balance,
-                    color: AppColor.whiteColor,
-                    size: 30,
-                  );
-                },
+          Row(
+            children: [
+              // Bank Icon
+              Image.asset(AppImage.bankHomeIcon,
+                  width: 60, height: 60, fit: BoxFit.cover),
+              const SizedBox(width: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppCommonString.hdfcBank,
+                    style: AppTextStyles.semiBold.copyWith(
+                      fontSize: 18,
+                      color: AppColor.blackColor,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    AppCommonString.savingAccount,
+                    style: AppTextStyles.regular.copyWith(
+                      fontSize: 14,
+                      color: AppColor.greyText,
+                    ),
+                  ),
+                ],
               ),
-            ),
+            ],
           ),
-          const SizedBox(width: 16),
-          
-          // Bank Details
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppCommonString.hdfcBank,
-                  style: AppTextStyles.semiBold.copyWith(
-                    fontSize: 18,
-                    color: AppColor.blackColor,
-                  ),
+          const SizedBox(height: 12),
+
+          // Account Number
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                AppCommonString.accountNumber,
+                style: AppTextStyles.semiBold.copyWith(
+                  fontSize: 14,
+                  color: AppColor.greyText,
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  AppCommonString.savingAccount,
-                  style: AppTextStyles.regular.copyWith(
-                    fontSize: 14,
-                    color: AppColor.greyText,
-                  ),
+              ),
+              Text(
+                AppCommonString.maskedAccountNumber,
+                style: AppTextStyles.medium.copyWith(
+                  fontSize: 14,
+                  color: AppColor.blackColor,
                 ),
-                const SizedBox(height: 12),
-                
-                // Account Number
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppCommonString.accountNumber,
-                      style: AppTextStyles.regular.copyWith(
-                        fontSize: 14,
-                        color: AppColor.greyText,
-                      ),
-                    ),
-                    Text(
-                      AppCommonString.maskedAccountNumber,
-                      style: AppTextStyles.medium.copyWith(
-                        fontSize: 14,
-                        color: AppColor.blackColor,
-                      ),
-                    ),
-                  ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+
+          // Account Type
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                AppCommonString.accountType,
+                style: AppTextStyles.semiBold.copyWith(
+                  fontSize: 14,
+                  color: AppColor.greyText,
                 ),
-                const SizedBox(height: 8),
-                
-                // Account Type
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppCommonString.accountType,
-                      style: AppTextStyles.regular.copyWith(
-                        fontSize: 14,
-                        color: AppColor.greyText,
-                      ),
-                    ),
-                    Text(
-                      AppCommonString.savings,
-                      style: AppTextStyles.medium.copyWith(
-                        fontSize: 14,
-                        color: AppColor.blackColor,
-                      ),
-                    ),
-                  ],
+              ),
+              Text(
+                AppCommonString.savings,
+                style: AppTextStyles.medium.copyWith(
+                  fontSize: 14,
+                  color: AppColor.blackColor,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
@@ -212,6 +200,7 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
       decoration: BoxDecoration(
         color: AppColor.lightOrangeColor,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColor.primary)
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,7 +213,7 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
                 AppCommonString.availableBalance,
                 style: AppTextStyles.medium.copyWith(
                   fontSize: 16,
-                  color: const Color(0xFF333333),
+                  color: AppColor.blackColor,
                 ),
               ),
               GestureDetector(
@@ -242,23 +231,23 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
             ],
           ),
           const SizedBox(height: 12),
-          
+
           // Balance Amount
           Text(
             _isBalanceVisible ? AppCommonString.balanceAmount : "••••••",
             style: AppTextStyles.bold.copyWith(
-              fontSize: 28,
+              fontSize: 32,
               color: AppColor.primary,
             ),
           ),
           const SizedBox(height: 8),
-          
+
           // Last Updated
           Text(
             AppCommonString.lastUpdated,
             style: AppTextStyles.regular.copyWith(
-              fontSize: 14,
-              color: const Color(0xFF666666),
+              fontSize: 12,
+              color: AppColor.greyText,
             ),
           ),
         ],
@@ -267,31 +256,33 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
   }
 
   Widget _buildRecentTransactionsSection() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          AppCommonString.recentTransactions,
-          style: AppTextStyles.semiBold.copyWith(
-            fontSize: 18,
-            color: AppColor.blackColor,
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            // TODO: Navigate to full transaction history
-          },
-          child: Text(
-            AppCommonString.viewAll,
-            style: AppTextStyles.medium.copyWith(
-              fontSize: 14,
-              color: AppColor.primary,
-              decorationColor: AppColor.primary,
-              decoration: TextDecoration.underline
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            AppCommonString.recentTransactions,
+            style: AppTextStyles.semiBold.copyWith(
+              fontSize: 18,
+              color: AppColor.blackColor,
             ),
           ),
-        ),
-      ],
+          GestureDetector(
+            onTap: () {
+              // TODO: Navigate to full transaction history
+            },
+            child: Text(
+              AppCommonString.viewAll,
+              style: AppTextStyles.medium.copyWith(
+                  fontSize: 14,
+                  color: AppColor.primary,
+                  decorationColor: AppColor.primary,
+                  decoration: TextDecoration.underline),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -308,22 +299,34 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
           ),
         ],
       ),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: _transactions.length,
-        separatorBuilder: (context, index) => _buildDivider(),
-        itemBuilder: (context, index) {
-          final transaction = _transactions[index];
-          return _buildTransactionItem(
-            icon: transaction.isCredit ? Icons.arrow_upward : Icons.arrow_downward,
-            iconColor: transaction.isCredit ? AppColor.greenTextColor : AppColor.redColor,
-            title: transaction.title,
-            date: transaction.date,
-            amount: transaction.amount,
-            amountColor: transaction.isCredit ? AppColor.greenTextColor : AppColor.redColor,
-          );
-        },
+      child: Column(
+        children: [
+          _buildRecentTransactionsSection(),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _transactions.length,
+            separatorBuilder: (context, index) => _buildDivider(),
+            itemBuilder: (context, index) {
+              final transaction = _transactions[index];
+              return _buildTransactionItem(
+                icon: transaction.isCredit
+                    ? Icons.arrow_upward
+                    : Icons.arrow_downward,
+                iconColor: transaction.isCredit
+                    ? AppColor.greenTextColor
+                    : AppColor.redColor,
+                bgColor: transaction.isCredit ? AppColor.greenBGColor : AppColor.lightRedColor,
+                title: transaction.title,
+                date: transaction.date,
+                amount: transaction.amount,
+                amountColor: transaction.isCredit
+                    ? AppColor.greenTextColor
+                    : AppColor.redColor,
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -331,6 +334,7 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
   Widget _buildTransactionItem({
     required IconData icon,
     required Color iconColor,
+    required Color bgColor,
     required String title,
     required String date,
     required String amount,
@@ -340,22 +344,14 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
-          // Transaction Icon
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 20,
-            ),
+          // Transaction Icon - Circular with arrow
+          CircularIconWidget(
+            icon: icon,
+            bgColor: bgColor,
+            iconColor: iconColor,
           ),
           const SizedBox(width: 12),
-          
+
           // Transaction Details
           Expanded(
             child: Column(
@@ -372,18 +368,18 @@ class _ViewBankDetailsScreenState extends State<ViewBankDetailsScreen> {
                 Text(
                   date,
                   style: AppTextStyles.regular.copyWith(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: AppColor.greyText,
                   ),
                 ),
               ],
             ),
           ),
-          
+
           // Amount
           Text(
             amount,
-            style: AppTextStyles.semiBold.copyWith(
+            style: AppTextStyles.medium.copyWith(
               fontSize: 16,
               color: amountColor,
             ),

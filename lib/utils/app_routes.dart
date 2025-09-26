@@ -13,6 +13,9 @@ import 'package:oneFCode/screens/add_stock_manually_screen.dart';
 import 'package:oneFCode/screens/add_mutual_fund_manually_screen.dart';
 import 'package:oneFCode/screens/add_insurance_manually_screen.dart';
 import 'package:oneFCode/screens/view_bank_details_screen.dart';
+import 'package:oneFCode/screens/view_insurance_details_screen.dart';
+import 'package:oneFCode/screens/view_stock_details_screen.dart';
+import 'package:oneFCode/screens/view_mutual_fund_details_screen.dart';
 
 import '../screens/add_manually_popup.dart';
 
@@ -30,6 +33,9 @@ class RouteConstant {
   static final addMutualFundsManually = 'addMutualFundsManually';
   static final addInsuranceManually = 'addInsuranceManually';
   static final viewBankDetails = 'viewBankDetails';
+  static final insuranceDetails = 'insuranceDetails';
+  static final stockDetails = 'stockDetails';
+  static final mutualFundDetails = 'mutualFundDetails';
 }
 
 class RouteGenerator {
@@ -47,6 +53,9 @@ class RouteGenerator {
     RouteConstant.addMutualFundsManually: (context) => const AddMutualFundManuallyScreen(),
     RouteConstant.addInsuranceManually: (context) => const AddInsuranceManuallyScreen(),
     RouteConstant.viewBankDetails: (context) => const ViewBankDetailsScreen(),
+    RouteConstant.insuranceDetails: (context) => const ViewInsuranceDetailsScreen(),
+    RouteConstant.stockDetails: (context) => const ViewStockDetailsScreen(),
+    RouteConstant.mutualFundDetails: (context) => const ViewMutualFundDetailsScreen(),
   };
 }
 

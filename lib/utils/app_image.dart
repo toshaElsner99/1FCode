@@ -31,6 +31,9 @@ class AppImage {
   static const bankIcon = "assets/images/bank.png";
   static const bankHomeIcon = "assets/images/bank_home.png";
   static const crossIcon = "assets/images/cross.png";
+  static const healthSecureIcon = "assets/images/health_secure_plan.png";
+  static const upArrowStockIcon = "assets/images/up_arrow_stock.png";
+  static const percentageIcon = "assets/images/percentage.png";
 
   // Bottom Navigation Icons
   static const homeIcon = "assets/images/home.png";

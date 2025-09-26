@@ -387,6 +387,7 @@ class AppCommonString {
   static const String mutualFundAddedSuccessMessage = "Your mutual fund details have been saved and will be processed shortly.";
   static const String insuranceAddedSuccessfully = "Insurance Added Successfully";
   static const String insuranceAddedSuccessMessage = "Your insurance details have been saved and will be processed shortly.";
+  static const String yesDeleteAcc = "Yes, Delete Account";
 
   // View Bank Details Screen
   static const String bankDetails = "Bank Details";
@@ -411,4 +412,82 @@ class AppCommonString {
   static const String groceryAmount = "-₹174.14";
   static const String electricAmount = "₹850.75";
   static const String electronicStore = "Electronic Store";
+
+  // View Insurance Details Screen
+  static const String insuranceDetails = "Insurance Details";
+  static const String healthSecurePlan2025 = "Health Secure Plan 2025";
+  static const String starHealthInsurance = "Star Health Insurance";
+  static const String sumInsured = "Sum Insured";
+  static const String sumInsuredAmount = "₹5,00,00";
+  static const String premium = "Premium";
+  static const String annually = "Annually";
+  static const String status = "Status";
+  static const String policyTimeline = "Policy Timeline";
+  static const String policyStartDate = "Policy Start Date";
+  static const String policyEndDate = "Policy End Date";
+  static const String daysRemaining = "23 days remaining";
+  static const String policyDocuments = "Policy Documents";
+  static const String policyCertificate = "Policy Certificate";
+  static const String termsAndConditions = "Terms & Conditions";
+  static const String fileSize = "2.4 MB PDF";
+  static const String documentDate = "Jan 16, 2024";
+
+  // View Stock Details Screen
+  static const String stockDetails = "Stock Details";
+  static const String relianceIndustriesLtd = "Reliance Industries Ltd.";
+  static const String relianceNS = "RELIANCE.NS";
+  static const String currentPrice = "₹2,847.50";
+  static const String priceChange = "+₹42.30 (+1.51%)";
+  static const String lastUpdatedTime = "15:30 IST";
+  static const String yourHoldings = "Your Holdings";
+  static const String sharesOwned = "Shares Owned";
+  static const String sharesOwnedValue = "25";
+  static const String totalInvestment = "Total Investment";
+  static const String totalInvestmentValue = "₹68,750";
+  static const String currentValue = "Current Value";
+  static const String currentValueAmount = "₹71,187.50";
+  static const String pnl = "P&L";
+  static const String pnlValue = "+₹2437.50";
+  static const String weekRange = "52 Week Range";
+  static const String weekHigh = "52W High";
+  static const String weekHighValue = "₹3,024.90";
+  static const String weekLow = "52W Low";
+  static const String weekLowValue = "₹2,220.30";
+  static const String currentPriceLabel = "Current: ₹2,847.50";
+  static const String transactionHistory = "Transaction History";
+  static const String buyTransaction = "Buy";
+  static const String buyDescription = "25 shares";
+  static const String buyDate = "Jan 15, 2024";
+  static const String buyAmount = "₹68,750";
+  static const String dividendTransaction = "Dividend";
+  static const String dividendDescription = "Quarterly";
+  static const String dividendDate = "Dec 20, 2023";
+  static const String dividendAmount = "₹1,250";
+
+  // View Mutual Fund Details Screen
+  static const String mutualFundDetails = "Mutual Fund Details";
+  static const String axisBluechipFund = "Axis Bluechip Fund";
+  static const String largeCapEquityFund = "Large Cap • Equity Fund";
+  static const String invested = "Invested";
+  static const String investedAmount = "₹95,000";
+  static const String returns = "Returns";
+  static const String returnsPercentage = "+32.20%";
+  static const String nav = "NAV";
+  static const String navValue = "₹42.85";
+  static const String navDate = "As of Dec 28, 2024";
+  static const String xirr = "XIRR";
+  static const String xirrValue = "18.6%";
+  static const String annualized = "Annualized";
+  static const String transactionsHistory = "Transactions History";
+  static const String sipInvestment = "SIP Investment";
+  static const String lumpsumPurchase = "Lumpsum Purchase";
+  static const String sipDate1 = "Dec 25, 2023";
+  static const String lumpsumDate = "Jan 15, 2024";
+  static const String sipDate2 = "Feb 28, 2024";
+  static const String sipAmount1 = "₹4,251.23";
+  static const String lumpsumAmount = "-₹127.84";
+  static const String sipAmount2 = "-₹174.14";
+  static const String navValue1 = "NAV ₹41.20";
+  static const String navValue2 = "NAV: ₹39.85";
+  static const String navValue3 = "NAV: ₹38.92";
 }

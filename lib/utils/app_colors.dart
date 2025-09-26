@@ -16,7 +16,8 @@ class AppColor {
   static const greenTextColor = Color(0xFF16A34A);
   static const greenBGColor = Color(0xFFE5F7EB);
   static const transparentColor = Colors.transparent;
-  
+  static const lightRedColor = Color(0xFFFEE2E2);
+
   // Add Manually Popup Colors
   static const bankGradientStart = Color(0x00DBEAFE); // rgba(219, 234, 254, 0)
   static const bankGradientEnd = Color(0xFFDBEAFE);

@@ -6,6 +6,7 @@ import 'package:oneFCode/utils/app_text_styles.dart';
 import 'package:oneFCode/utils/app_common_strings.dart';
 import 'package:oneFCode/widgets/app_common_appbar.dart';
 import 'package:oneFCode/widgets/common_popup.dart';
+import 'package:oneFCode/widgets/delete_account_dialog.dart';
 import 'package:oneFCode/services/storage_service/storage_service.dart';
 import 'package:oneFCode/utils/app_utils.dart';
 import 'package:oneFCode/services/storage_service/storage_keys.dart';
@@ -299,39 +300,29 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   }
 
   void _onDeleteAccount() {
-    ConfirmationDialog.show(
-      context: context,
-      title: AppCommonString.deleteAccount,
-      message: '${AppCommonString.deleteAccountConfirmation}\n\n${AppCommonString.deleteAccountWarning}',
-      confirmText: AppCommonString.deleteAccount,
-      cancelText: AppCommonString.cancel,
-      onConfirm: () {
+    DeleteAccountDialog.show(
+      context,
+      onDelete: () {
+        Navigator.of(context).pop(); // Close dialog
         _confirmDeleteAccount();
+      },
+      onCancel: () {
+        Navigator.of(context).pop(); // Close dialog
       },
     );
   }
 
   void _confirmDeleteAccount() {
-    ConfirmationDialog.show(
-      context: context,
-      title: AppCommonString.finalConfirmation,
-      message: AppCommonString.typeDeleteToConfirm,
-      confirmText: AppCommonString.delete,
-      cancelText: AppCommonString.cancel,
-      onConfirm: () {
-        // Handle account deletion logic here
-        AppUtils.instance.showSnackBar(
-          context,
-          AppCommonString.accountDeletedSuccess,
-          backgroundColor: AppColor.greenTextColor,
-          duration: const Duration(seconds: 2),
-        );
-        // Navigate to login screen or splash screen
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          '/', // Replace with your login route
+    AppUtils.instance.showSnackBar(
+      context,
+      AppCommonString.accountDeletedSuccess,
+      backgroundColor: AppColor.greenTextColor,
+      duration: const Duration(seconds: 2),
+    );
+    // Navigate to login screen or splash screen
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      '/', // Replace with your login route
           (route) => false,
-        );
-      },
     );
   }
 

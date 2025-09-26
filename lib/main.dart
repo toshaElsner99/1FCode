@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:oneFCode/screens/bottom_navigation_bar_screen.dart';
-import 'package:oneFCode/screens/view_bank_details_screen.dart';
+import 'package:oneFCode/screens/profile_settings_screen.dart';
+import 'package:oneFCode/screens/splash_screen.dart';
+import 'package:oneFCode/screens/view_mutual_fund_details_screen.dart';
+import 'package:oneFCode/screens/view_stock_details_screen.dart';
 import 'package:oneFCode/utils/app_routes.dart';
 import 'package:oneFCode/utils/navigation_service.dart';
 import 'package:oneFCode/utils/app_colors.dart';
 import 'flavor_config/environment.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -32,7 +37,7 @@ class MyApp extends StatelessWidget {
         );
       },
       debugShowCheckedModeBanner: false,
-      home: ViewBankDetailsScreen(),
+      home: ProfileSettingsScreen(),
     );
   }
 }
